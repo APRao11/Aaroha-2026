@@ -2,20 +2,25 @@
    ROADMAP PAGE
    ========================================================= */
 
-.roadmap-page {
-  min-height: 100vh;
-  width: 100%;
-  padding: 48px 24px 80px;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.12), transparent 28%),
-    radial-gradient(circle at 90% 20%, rgba(14, 165, 233, 0.1), transparent 28%),
-    #f7f8fc;
-  color: #172033;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+  font-family: 'Plus Jakarta Sans', sans-serif;
   box-sizing: border-box;
 }
 
+.roadmap-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 44px 24px 76px;
+
+  background: #f7faf8;
+
+  color: #164a30;
+}
+
 .roadmap-container {
-  width: min(1100px, 100%);
+  width: min(1080px, 100%);
   margin: 0 auto;
 }
 
@@ -28,76 +33,111 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 36px;
+
   padding: 38px;
-  border-radius: 28px;
-  background: linear-gradient(135deg, #111827, #26356b);
+
+  border-radius: 16px;
+
+  background: #164a30;
+
   color: white;
-  box-shadow: 0 24px 60px rgba(31, 41, 55, 0.18);
+
+  box-shadow: 0 10px 28px rgba(22, 74, 48, 0.14);
+
   overflow: hidden;
   position: relative;
 }
 
 .roadmap-hero::after {
   content: "";
+
   position: absolute;
+
   width: 260px;
   height: 260px;
+
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  right: -80px;
-  top: -100px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  right: -100px;
+  top: -125px;
 }
 
 .roadmap-hero-content {
   position: relative;
   z-index: 1;
+
   max-width: 650px;
 }
 
 .roadmap-badge {
   display: inline-flex;
-  padding: 7px 13px;
-  margin-bottom: 16px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+
+  padding: 6px 11px;
+  margin-bottom: 15px;
+
+  border-radius: 5px;
+
+  background: rgba(255, 255, 255, 0.11);
+
   border: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: 12px;
+
+  font-size: 10px;
   font-weight: 700;
+
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .roadmap-hero h1 {
   margin: 0;
-  font-size: clamp(30px, 4vw, 46px);
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+
+  font-size: clamp(30px, 4vw, 43px);
+
+  line-height: 1.12;
+
+  letter-spacing: -0.045em;
+
+  font-weight: 800;
 }
 
 .roadmap-hero p {
-  margin: 16px 0 0;
+  margin: 15px 0 0;
+
   max-width: 600px;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 16px;
-  line-height: 1.6;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  font-weight: 400;
 }
 
 
 /* =========================================================
-   PROGRESS CARD
+   PROGRESS CARD IN HERO
    ========================================================= */
 
 .roadmap-progress-card {
-  min-width: 235px;
+  min-width: 230px;
+
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
+
+  gap: 16px;
+
+  padding: 18px;
+
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.09);
+
   border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(12px);
+
   position: relative;
   z-index: 1;
 }
@@ -105,43 +145,64 @@
 .progress-ring {
   width: 74px;
   height: 74px;
+
   flex-shrink: 0;
+
   display: grid;
   place-items: center;
+
   border-radius: 50%;
+
   background: conic-gradient(
-    #60a5fa,
-    #818cf8,
-    #60a5fa
+    #1f5c3b,
+    #246b45,
+    #1f5c3b
   );
+
   position: relative;
 }
 
 .progress-ring::before {
   content: "";
+
   position: absolute;
+
   inset: 7px;
+
   border-radius: 50%;
-  background: #1d2851;
+
+  background: #164a30;
 }
 
 .progress-ring span {
   position: relative;
   z-index: 1;
-  font-size: 18px;
+
+  font-size: 17px;
+
   font-weight: 800;
 }
 
 .progress-label {
   display: block;
+
   margin-bottom: 5px;
+
   color: rgba(255, 255, 255, 0.65);
-  font-size: 12px;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.02em;
 }
 
 .roadmap-progress-card strong {
   display: block;
-  font-size: 14px;
+
+  font-size: 13px;
+
+  font-weight: 700;
 }
 
 
@@ -150,43 +211,69 @@
    ========================================================= */
 
 .overall-progress {
-  margin: 24px 0 34px;
-  padding: 20px 22px;
-  border-radius: 18px;
-  background: white;
-  border: 1px solid #e6e9f0;
-  box-shadow: 0 8px 25px rgba(31, 41, 55, 0.05);
+  margin: 24px 0 32px;
+
+  padding: 22px 24px;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #d1e5d9;
+
+  box-shadow:
+    0 5px 18px rgba(22, 74, 48, 0.045);
 }
 
 .overall-progress-top {
   display: flex;
+
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 11px;
+
+  align-items: flex-end;
+
+  margin-bottom: 15px;
 }
 
 .overall-progress-top span {
-  color: #64748b;
-  font-size: 13px;
+  display: block;
+
+  color: #52635a;
+
+  font-size: 12px;
+
   font-weight: 600;
+
+  letter-spacing: 0.01em;
 }
 
 .overall-progress-top strong {
-  color: #4f46e5;
-  font-size: 14px;
+  color: #1f5c3b;
+
+  font-size: 18px;
+
+  line-height: 1;
+
+  font-weight: 800;
 }
 
 .overall-progress-track {
-  height: 9px;
+  height: 10px;
+
   overflow: hidden;
+
   border-radius: 999px;
-  background: #e9edf5;
+
+  background: #eaf3ed;
 }
 
 .overall-progress-fill {
   height: 100%;
+
   border-radius: inherit;
-  background: linear-gradient(90deg, #6366f1, #3b82f6);
+
+  background: #1f5c3b;
+
   transition: width 0.4s ease;
 }
 
@@ -205,13 +292,12 @@
 
 .roadmap-connector {
   width: 2px;
-  height: 28px;
+
+  height: 27px;
+
   margin: 0 auto;
-  background: linear-gradient(
-    to bottom,
-    #c7d2fe,
-    #93c5fd
-  );
+
+  background: #d1e5d9;
 }
 
 
@@ -220,11 +306,17 @@
    ========================================================= */
 
 .technology-card {
-  background: white;
-  border: 1px solid #e4e8f0;
-  border-radius: 22px;
+  background: #ffffff;
+
+  border: 1px solid #d1e5d9;
+
+  border-radius: 13px;
+
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(31, 41, 55, 0.05);
+
+  box-shadow:
+    0 4px 17px rgba(22, 74, 48, 0.045);
+
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -232,92 +324,142 @@
 }
 
 .technology-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 38px rgba(31, 41, 55, 0.09);
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 23px rgba(22, 74, 48, 0.07);
+
+  border-color: #246b45;
 }
 
 .technology-card.expanded {
-  border-color: #c7d2fe;
-  box-shadow: 0 16px 45px rgba(79, 70, 229, 0.09);
+  border-color: #246b45;
+
+  box-shadow:
+    0 8px 25px rgba(22, 74, 48, 0.075);
 }
 
 .technology-header {
   width: 100%;
+
   border: none;
+
   background: transparent;
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 20px;
-  padding: 22px 24px;
+
+  padding: 21px 23px;
+
   text-align: left;
+
   cursor: pointer;
+
   color: inherit;
 }
 
 .technology-header:hover {
-  background: #fafbff;
+  background: #f1f7f3;
 }
 
 .technology-left {
   display: flex;
+
   align-items: center;
-  gap: 17px;
+
+  gap: 15px;
 }
 
 .technology-number {
-  width: 48px;
-  height: 48px;
+  width: 45px;
+  height: 45px;
+
   display: grid;
+
   place-items: center;
-  border-radius: 15px;
-  background: linear-gradient(135deg, #eef2ff, #dbeafe);
-  color: #4f46e5;
-  font-size: 13px;
+
+  border-radius: 10px;
+
+  background: #eaf3ed;
+
+  color: #1f5c3b;
+
+  font-size: 12px;
+
   font-weight: 800;
 }
 
 .technology-left h2 {
-  margin: 0 0 5px;
-  font-size: 19px;
+  margin: 0 0 4px;
+
+  color: #164a30;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
   letter-spacing: -0.02em;
 }
 
 .technology-left span {
-  color: #7b8799;
-  font-size: 12px;
+  color: #7a8981;
+
+  font-size: 11px;
+
+  font-weight: 500;
 }
 
 .technology-right {
   display: flex;
+
   align-items: center;
-  gap: 18px;
+
+  gap: 15px;
 }
 
 .mini-progress {
   width: 90px;
+
   height: 6px;
+
   overflow: hidden;
+
   border-radius: 999px;
-  background: #edf0f5;
+
+  background: #eaf3ed;
 }
 
 .mini-progress-fill {
   height: 100%;
+
   border-radius: inherit;
-  background: linear-gradient(90deg, #6366f1, #3b82f6);
+
+  background: #246b45;
+
   transition: width 0.3s ease;
 }
 
 .expand-icon {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
+
   display: grid;
+
   place-items: center;
-  border-radius: 10px;
-  background: #f3f5f9;
-  color: #475569;
-  font-size: 20px;
+
+  border-radius: 7px;
+
+  background: #f1f7f3;
+
+  color: #52635a;
+
+  font-size: 17px;
+
   font-weight: 500;
 }
 
@@ -327,72 +469,108 @@
    ========================================================= */
 
 .technology-content {
-  padding: 0 18px 18px;
-  border-top: 1px solid #edf0f5;
-  background: #fafbfe;
+  padding: 0 17px 17px;
+
+  border-top: 1px solid #d1e5d9;
+
+  background: #f1f7f3;
 }
 
 .topic-card {
-  margin-top: 12px;
+  margin-top: 11px;
+
   overflow: hidden;
-  border: 1px solid #e5e9f1;
-  border-radius: 16px;
+
+  border: 1px solid #d1e5d9;
+
+  border-radius: 10px;
+
   background: white;
 }
 
 .topic-card.expanded {
-  border-color: #c7d2fe;
+  border-color: #246b45;
 }
 
 .topic-header {
   width: 100%;
+
   border: none;
+
   background: transparent;
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 16px;
-  padding: 17px 18px;
+
+  padding: 16px 17px;
+
   cursor: pointer;
+
   text-align: left;
+
   color: inherit;
 }
 
 .topic-header:hover {
-  background: #fafaff;
+  background: #f1f7f3;
 }
 
 .topic-left {
   display: flex;
+
   align-items: center;
-  gap: 13px;
+
+  gap: 12px;
 }
 
 .topic-number {
-  width: 30px;
-  height: 30px;
+  width: 29px;
+  height: 29px;
+
   display: grid;
+
   place-items: center;
-  border-radius: 9px;
-  background: #f1f5f9;
-  color: #64748b;
-  font-size: 12px;
+
+  border-radius: 7px;
+
+  background: #eaf3ed;
+
+  color: #1f5c3b;
+
+  font-size: 10px;
+
   font-weight: 800;
 }
 
 .topic-left h3 {
   margin: 0 0 3px;
-  font-size: 14px;
+
+  color: #164a30;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  letter-spacing: -0.005em;
 }
 
 .topic-left span {
-  color: #8a95a6;
-  font-size: 11px;
+  color: #8a9690;
+
+  font-size: 10px;
+
+  font-weight: 500;
 }
 
 .topic-arrow {
-  color: #64748b;
-  font-size: 18px;
+  color: #246b45;
+
+  font-size: 16px;
 }
 
 
@@ -401,56 +579,79 @@
    ========================================================= */
 
 .task-list {
-  padding: 0 12px 12px;
+  padding: 0 11px 11px;
 }
 
 .task-card {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 18px;
+
   margin-top: 8px;
-  padding: 15px;
-  border-radius: 13px;
-  border: 1px solid #edf0f4;
-  background: #fbfcfe;
+
+  padding: 14px;
+
+  border-radius: 8px;
+
+  border: 1px solid #d1e5d9;
+
+  background: #fcfdfc;
+
   transition:
     background 0.2s ease,
     border-color 0.2s ease;
 }
 
 .task-card:hover {
-  background: white;
-  border-color: #d9def0;
+  background: #f1f7f3;
+
+  border-color: #246b45;
 }
 
 .task-card.completed {
-  background: #f0fdf4;
-  border-color: #bbf7d0;
+  background: #eaf3ed;
+
+  border-color: #d1e5d9;
 }
 
 .task-card.in-progress {
-  background: #eff6ff;
-  border-color: #bfdbfe;
+  background: #f1f7f3;
+
+  border-color: #246b45;
 }
 
 .task-main {
   min-width: 0;
+
   display: flex;
+
   align-items: center;
-  gap: 13px;
+
+  gap: 12px;
 }
 
 .task-number {
-  width: 34px;
-  height: 34px;
+  width: 33px;
+  height: 33px;
+
   flex-shrink: 0;
+
   display: grid;
+
   place-items: center;
-  border-radius: 10px;
-  background: #eef2f7;
-  color: #64748b;
-  font-size: 11px;
+
+  border-radius: 8px;
+
+  background: #eaf3ed;
+
+  color: #1f5c3b;
+
+  font-size: 10px;
+
   font-weight: 800;
 }
 
@@ -460,18 +661,30 @@
 
 .task-label {
   display: block;
+
   margin-bottom: 4px;
-  color: #8a95a6;
-  font-size: 9px;
+
+  color: #84918a;
+
+  font-size: 8px;
+
   font-weight: 800;
+
   letter-spacing: 0.09em;
+
+  text-transform: uppercase;
 }
 
 .task-details p {
   margin: 0;
-  color: #334155;
-  font-size: 13px;
-  line-height: 1.45;
+
+  color: #35413b;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  font-weight: 500;
 }
 
 
@@ -481,35 +694,53 @@
 
 .task-status {
   flex-shrink: 0;
+
   min-width: 135px;
+
   padding: 8px 30px 8px 11px;
-  border: 1px solid #dce1e9;
-  border-radius: 9px;
+
+  border: 1px solid #d1e5d9;
+
+  border-radius: 7px;
+
   background: white;
-  color: #475569;
-  font-size: 11px;
+
+  color: #52635a;
+
+  font-size: 10px;
+
   font-weight: 700;
+
   cursor: pointer;
+
   outline: none;
 }
 
 .task-status:focus {
-  border-color: #818cf8;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  border-color: #246b45;
+
+  box-shadow:
+    0 0 0 3px rgba(36, 107, 69, 0.1);
 }
 
 .task-status.completed {
-  border-color: #86efac;
-  color: #15803d;
+  border-color: #246b45;
+
+  color: #1f5c3b;
+
+  background: #eaf3ed;
 }
 
 .task-status.in-progress {
-  border-color: #93c5fd;
-  color: #2563eb;
+  border-color: #246b45;
+
+  color: #1f5c3b;
+
+  background: #f1f7f3;
 }
 
 .task-status.not-started {
-  color: #64748b;
+  color: #65736c;
 }
 
 .status-text {
@@ -523,43 +754,65 @@
 
 .roadmap-footer {
   display: flex;
+
   align-items: center;
-  gap: 15px;
-  margin-top: 28px;
-  padding: 20px 22px;
-  border: 1px solid #dbe4ff;
-  border-radius: 18px;
-  background: linear-gradient(
-    135deg,
-    #f5f7ff,
-    #eff6ff
-  );
+
+  gap: 14px;
+
+  margin-top: 27px;
+
+  padding: 19px 21px;
+
+  border: 1px solid #d1e5d9;
+
+  border-radius: 11px;
+
+  background: #f1f7f3;
 }
 
 .footer-icon {
-  width: 40px;
-  height: 40px;
+  width: 39px;
+  height: 39px;
+
   flex-shrink: 0;
+
   display: grid;
+
   place-items: center;
-  border-radius: 12px;
-  background: #e0e7ff;
-  color: #4f46e5;
-  font-size: 18px;
+
+  border-radius: 8px;
+
+  background: #eaf3ed;
+
+  color: #1f5c3b;
+
+  font-size: 17px;
+
   font-weight: 800;
 }
 
 .roadmap-footer strong {
   display: block;
+
   margin-bottom: 3px;
-  font-size: 14px;
+
+  color: #164a30;
+
+  font-size: 13px;
+
+  font-weight: 700;
 }
 
 .roadmap-footer p {
   margin: 0;
-  color: #64748b;
-  font-size: 12px;
-  line-height: 1.5;
+
+  color: #687873;
+
+  font-size: 11px;
+
+  line-height: 1.55;
+
+  font-weight: 500;
 }
 
 
@@ -574,8 +827,10 @@
 
   .roadmap-hero {
     flex-direction: column;
+
     align-items: stretch;
-    padding: 26px 22px;
+
+    padding: 27px 22px;
   }
 
   .roadmap-progress-card {
@@ -595,11 +850,12 @@
   }
 
   .technology-left h2 {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .task-card {
     align-items: flex-start;
+
     flex-direction: column;
   }
 
@@ -610,7 +866,7 @@
 
 @media (max-width: 480px) {
   .roadmap-hero h1 {
-    font-size: 29px;
+    font-size: 28px;
   }
 
   .technology-number {
@@ -632,5 +888,9 @@
 
   .task-card {
     padding: 13px;
+  }
+
+  .overall-progress {
+    padding: 19px;
   }
 }

@@ -7,8 +7,7 @@ import { convertAssessmentResultsToSkillLevels } from './data/roadmap'
 
 function App() {
   const [page, setPage] = useState('login')
-  const [previousPage, setPreviousPage] = useState('')
-  const [selectedSkills, setSelectedSkills] = useState([])
+  const [previousPage, setPreviousPage] = useState('') 
   const [selectedDomain, setSelectedDomain] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -57,26 +56,9 @@ function App() {
 
   const selectDomain = (domainName) => {
     setSelectedDomain(domainName)
-    setSelectedSkills([])
     goToPage('overview')
   }
 
-  const selectSkill = (skill) => {
-    if (selectedSkills.includes('None of the above')) {
-      return
-    }
-
-    if (!selectedSkills.includes(skill)) {
-      setSelectedSkills([
-        ...selectedSkills,
-        skill
-      ])
-    }
-  }
-
-  const selectNone = () => {
-    setSelectedSkills(['None of the above'])
-  }
 
   const handleLogin = async () => {
     const trimmedEmail = email.trim()
@@ -124,37 +106,6 @@ function App() {
     }
   }
 
-  const handleContinueToAssessment = async () => {
-    if (!learnerId) {
-      setLoginMessage('Please log in first before continuing.')
-      return
-    }
-
-    try {
-      const response = await fetch(`/api/learners/${learnerId}/skills`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          domain: selectedDomain,
-          skills: selectedSkills.includes('None of the above')
-            ? []
-            : selectedSkills,
-        }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Could not save skills')
-      }
-
-      goToPage('assessment')
-    } catch (error) {
-      setLoginMessage(error.message)
-    }
-  }
 
   const handleAssessmentComplete = async (results) => {
     if (!learnerId) {
@@ -442,7 +393,7 @@ function App() {
           </div>
 
           <button
-            onClick={() => goToPage('skills')}
+            onClick={() => goToPage('assessment')}
           >
             Choose This Domain →
           </button>
@@ -452,72 +403,11 @@ function App() {
 
       {/* SKILLS PAGE */}
 
-      {page === 'skills' && domainInfo && (
-        <section className="skills">
-
-          <h1>
-            What skills do you already know?
-          </h1>
-
-          <p>
-            Select the skills you are familiar with
-            in {domainInfo.name}.
-          </p>
-
-          <div className="skill-list">
-
-            {domainInfo.skills.map((skill) => (
-              <button
-                key={skill}
-                className={
-                  selectedSkills.includes(skill)
-                    ? 'selected-skill'
-                    : ''
-                }
-                onClick={() => selectSkill(skill)}
-              >
-                {skill}
-              </button>
-            ))}
-
-            <button
-              className={
-                selectedSkills.includes(
-                  'None of the above'
-                )
-                  ? 'selected-skill'
-                  : ''
-              }
-              onClick={selectNone}
-            >
-              None of the above
-            </button>
-
-          </div>
-
-          <p>
-            Selected skills:{' '}
-
-            {selectedSkills.length > 0
-              ? selectedSkills.join(', ')
-              : 'None selected'}
-          </p>
-
-          <button
-            onClick={handleContinueToAssessment}
-          >
-            Continue →
-          </button>
-
-        </section>
-      )}
-
       {/* ASSESSMENT PLACEHOLDER */}
 
       {page === 'assessment' && domainInfo && (
         <Assessment
           learnerId={learnerId}
-          selectedSkills={selectedSkills}
           domain={selectedDomain}
           onComplete={handleAssessmentComplete}
         />
