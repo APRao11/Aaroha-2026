@@ -205,9 +205,9 @@ function Roadmap({ skillLevels = {} }) {
                         <h2>{technology.technology}</h2>
 
                         <span>
-                          {technology.topics.length} topics
-                          {" • "}
-                          {technologyProgress}% complete
+                        {technology.level} • {technology.topics.length} topics
+                        {" • "}
+                         {technologyProgress}% complete
                         </span>
                       </div>
                     </div>

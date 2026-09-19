@@ -1,12 +1,19 @@
+
+
 import { useState } from 'react'
 import './App.css'
 import domains from './data/domains'
+import Assessment from './components/assessment/Assessment'
+import Roadmap from './components/roadmap/Roadmap'
+import { convertAssessmentResultsToSkillLevels } from './data/roadmap'
 
 function App() {
   const [page, setPage] = useState('login')
   const [previousPage, setPreviousPage] = useState('')
   const [selectedSkills, setSelectedSkills] = useState([])
   const [selectedDomain, setSelectedDomain] = useState('')
+  const [assessmentResults, setAssessmentResults] = useState(null)
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loginMessage, setLoginMessage] = useState('')
@@ -400,33 +407,20 @@ function App() {
 
       {/* ASSESSMENT PLACEHOLDER */}
 
-      {page === 'assessment' && domainInfo && (
-        <section className="skills">
+      {/* ASSESSMENT */}
 
-          <h1>
-            {domainInfo.name} Assessment
-          </h1>
-
-          <p>
-            Your personalized assessment will
-            appear here.
-          </p>
-
-          <p>
-            Selected skills:{' '}
-
-            {selectedSkills.length > 0
-              ? selectedSkills.join(', ')
-              : 'None selected'}
-          </p>
-
-          <p>
-            Assessment module coming soon 🚀
-          </p>
-
-        </section>
-      )}
-
+{page === 'assessment' && domainInfo && (
+  <Assessment
+    selectedSkillsFromApp={selectedSkills}
+    onAssessmentComplete={(results) => {
+      setAssessmentResults(results)
+      goToPage('roadmap')
+    }}
+  />
+)}
+{page === 'roadmap' && (
+  <Roadmap skillLevels={convertAssessmentResultsToSkillLevels(assessmentResults)} />
+)}
     </div>
   )
 }

@@ -1,16 +1,27 @@
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import assessmentData from "./assessmentData";
 import {
   calculateSelectedSkillsResults,
   handleSkillSelection
 } from "./assessmentLogic";
 
-function Assessment() {
+function Assessment({ selectedSkillsFromApp, onAssessmentComplete}) {
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [noneSelected, setNoneSelected] = useState(false); 
   const [started, setStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
+   useEffect(() => {
+    if (selectedSkillsFromApp?.length > 0) {
+      if (selectedSkillsFromApp.includes("None of the above")) {
+        setNoneSelected(true);
+        return;
+      }
+
+      setSelectedSkills(selectedSkillsFromApp);
+      setStarted(true);
+    }
+  }, [selectedSkillsFromApp]);
 
 const currentSkill = selectedSkills[currentSkillIndex];
   const [answers, setAnswers] = useState([]);
@@ -159,30 +170,21 @@ onClick={() => {
     return;
   }
 
-  if (currentQuestion < questions.length - 1) {
-    setCurrentQuestion(currentQuestion + 1);
-  } else {
-    const finalAnswersBySkill = {
-      ...answersBySkill,
-      [currentSkill]: answers
-    };
+  setAnswersBySkill(finalAnswersBySkill);
 
-    setAnswersBySkill(finalAnswersBySkill);
+if (currentSkillIndex < selectedSkills.length - 1) {
+  setCurrentSkillIndex(currentSkillIndex + 1);
+  setCurrentQuestion(0);
+  setAnswers([]);
+} else {
+  const calculatedResults = calculateSelectedSkillsResults(
+    selectedSkills,
+    finalAnswersBySkill,
+    assessmentData
+  );
 
-    if (currentSkillIndex < selectedSkills.length - 1) {
-      setCurrentSkillIndex(currentSkillIndex + 1);
-      setCurrentQuestion(0);
-      setAnswers([]);
-    } else {
-      const calculatedResults = calculateSelectedSkillsResults(
-        selectedSkills,
-        finalAnswersBySkill,
-        assessmentData
-      );
-
-      setResults(calculatedResults);
-    }
-  }
+  setResults(calculatedResults);
+}
 }}
 >{currentQuestion < questions.length - 1
   ? "Next"
@@ -202,13 +204,13 @@ onClick={() => {
       You can continue to the beginner roadmap.
     </p>
 
-    <button
-      onClick={() => {
-        console.log("Beginner roadmap should open");
-      }}
-    >
-      Continue to Beginner Roadmap
-    </button>
+  <button
+  onClick={() => {
+    onAssessmentComplete({});
+  }}
+>
+  Continue to Beginner Roadmap
+</button>
   </div>
 )}{results && (
   <div>
@@ -233,19 +235,18 @@ onClick={() => {
     ))}<button
   onClick={() => {
     setResults(null);
-    setStarted(false);
+    setStarted(true);
     setCurrentSkillIndex(0);
     setCurrentQuestion(0);
     setAnswers([]);
     setAnswersBySkill({});
-    setSelectedSkills([]);
     setNoneSelected(false);
   }}
 >
   Retake Assessment
 </button><button
   onClick={() => {
-    console.log("Assessment results ready for roadmap:", results);
+    onAssessmentComplete(results);
   }}
 >
   Continue to Roadmap
