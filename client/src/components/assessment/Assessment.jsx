@@ -162,19 +162,27 @@ onClick={() => {
   if (currentQuestion < questions.length - 1) {
     setCurrentQuestion(currentQuestion + 1);
   } else {
-  const finalAnswersBySkill = {
-    ...answersBySkill,
-    [currentSkill]: answers
-  };
+    const finalAnswersBySkill = {
+      ...answersBySkill,
+      [currentSkill]: answers
+    };
 
-  const calculatedResults = calculateSelectedSkillsResults(
-    selectedSkills,
-    finalAnswersBySkill,
-    assessmentData
-  );
+    setAnswersBySkill(finalAnswersBySkill);
 
-  setResults(calculatedResults);
-}
+    if (currentSkillIndex < selectedSkills.length - 1) {
+      setCurrentSkillIndex(currentSkillIndex + 1);
+      setCurrentQuestion(0);
+      setAnswers([]);
+    } else {
+      const calculatedResults = calculateSelectedSkillsResults(
+        selectedSkills,
+        finalAnswersBySkill,
+        assessmentData
+      );
+
+      setResults(calculatedResults);
+    }
+  }
 }}
 >{currentQuestion < questions.length - 1
   ? "Next"
