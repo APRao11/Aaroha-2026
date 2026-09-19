@@ -190,6 +190,64 @@ const webDevelopmentRoadmap = [
   }
 ];
 
+/*
+ * Converts assessment proficiency into the skill level
+ * expected by the personalized roadmap.
+ *
+ * Assessment result:
+ *     proficiency percentage
+ *
+ * Roadmap input:
+ *     "beginner" or "intermediate"
+ */
+export function proficiencyToSkillLevel(proficiency) {
+  if (proficiency === undefined || proficiency === null) {
+    return "none";
+  }
+
+  if (proficiency >= 70) {
+    return "intermediate";
+  }
+
+  return "beginner";
+}
+
+/*
+ * Converts assessment results for multiple technologies
+ * into the skillLevels format used by getPersonalizedRoadmap().
+ *
+ * Example input:
+ *
+ * {
+ *   HTML: { proficiency: 80 },
+ *   CSS: { proficiency: 45 },
+ *   JavaScript: { proficiency: 20 }
+ * }
+ *
+ * becomes:
+ *
+ * {
+ *   HTML: "intermediate",
+ *   CSS: "beginner",
+ *   JavaScript: "beginner"
+ * }
+ */
+export function convertAssessmentResultsToSkillLevels(
+  assessmentResults
+) {
+  const skillLevels = {};
+
+  Object.entries(assessmentResults || {}).forEach(
+    ([skill, result]) => {
+      skillLevels[skill] = proficiencyToSkillLevel(
+        result.proficiency
+      );
+    }
+  );
+
+  return skillLevels;
+}
+
 export function getPersonalizedRoadmap(skillLevels) {
   return webDevelopmentRoadmap.map((technology) => {
     const level = skillLevels[technology.technology] || "none";
