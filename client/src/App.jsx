@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import domains from './data/domains'
 
@@ -10,6 +10,21 @@ function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loginMessage, setLoginMessage] = useState('')
+  const [backendStatus, setBackendStatus] = useState('Checking backend connection...')
+
+  useEffect(() => {
+    const checkBackend = async () => {
+      try {
+        const response = await fetch('/api')
+        const data = await response.json()
+        setBackendStatus(data.message || 'Backend connected')
+      } catch (error) {
+        setBackendStatus('Backend not connected yet')
+      }
+    }
+
+    checkBackend()
+  }, [])
 
   const domainInfo = domains.find(
     (domain) => domain.name === selectedDomain
@@ -141,6 +156,10 @@ function App() {
             <button onClick={handleLogin}>
               Login →
             </button>
+
+            <p className="login-message">
+              {backendStatus}
+            </p>
 
             {loginMessage && (
               <p className="login-message">

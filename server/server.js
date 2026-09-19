@@ -13,9 +13,13 @@ app.use(express.json());
 app.use("/api/learners", learnerRoutes);
 app.use("/api/assessments", assessmentRoutes);
 
-// app.get("/", (req, res) => {
-//   res.json({ message: "Aaroha backend is running!" });
-// });
+app.get("/api", (req, res) => {
+  res.json({ message: "Aaroha backend is running!" });
+});
+
+app.get("/api/", (req, res) => {
+  res.json({ message: "Aaroha backend is running!" });
+});
 
 app.get("/", (req, res) => {
   res.json({ message: "Aaroha backend is running!" });
