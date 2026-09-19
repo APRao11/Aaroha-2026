@@ -11,6 +11,7 @@ function App() {
   const [password, setPassword] = useState('')
   const [loginMessage, setLoginMessage] = useState('')
   const [backendStatus, setBackendStatus] = useState('Checking backend connection...')
+  const [learnerId, setLearnerId] = useState(null)
 
   useEffect(() => {
     const checkBackend = async () => {
@@ -72,7 +73,7 @@ function App() {
     setSelectedSkills(['None of the above'])
   }
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !password) {
       setLoginMessage(
         'Please enter your email and password.'
@@ -80,8 +81,62 @@ function App() {
       return
     }
 
-    setLoginMessage('')
-    goToPage('landing')
+    try {
+      const response = await fetch('/api/learners', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: email.includes('@') ? email.split('@')[0] : email,
+          email,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Login failed')
+      }
+
+      setLearnerId(data.id)
+      setLoginMessage('')
+      goToPage('landing')
+    } catch (error) {
+      setLoginMessage(error.message)
+    }
+  }
+
+  const handleContinueToAssessment = async () => {
+    if (!learnerId) {
+      setLoginMessage('Please log in first before continuing.')
+      return
+    }
+
+    try {
+      const response = await fetch(`/api/learners/${learnerId}/skills`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          domain: selectedDomain,
+          skills: selectedSkills.includes('None of the above')
+            ? []
+            : selectedSkills,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Could not save skills')
+      }
+
+      goToPage('assessment')
+    } catch (error) {
+      setLoginMessage(error.message)
+    }
   }
 
   return (
@@ -409,7 +464,7 @@ function App() {
           </p>
 
           <button
-            onClick={() => goToPage('assessment')}
+            onClick={handleContinueToAssessment}
           >
             Continue →
           </button>
