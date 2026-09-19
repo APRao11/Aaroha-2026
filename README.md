@@ -1,245 +1,409 @@
 # Aaroha
 
-### Personalized Learning & Career Roadmap Platform
+## Personalized Learning & Career Roadmap Platform
 
-Aaroha is a personalized learning and career roadmap platform designed to help learners understand their current skills, identify gaps, and follow a structured learning path based on their existing knowledge.
+**Aaroha** is a personalized learning platform that helps students understand their current skills, identify the gaps between their existing abilities and their target career, and follow a structured learning path.
 
-Instead of starting every learner from the same point, Aaroha considers the skills a learner already knows and uses assessment results to determine where they should begin and what they need to learn next.
+The platform focuses on the part of the learning journey that comes **before and around learning content** — understanding where a learner currently stands, identifying what they need to learn, creating a structured roadmap, and eventually tracking and adapting their progress.
 
----
-
-## Problem Statement
-
-Many students have an idea about the career or domain they want to pursue, but they may not have a clear understanding of their current skill level.
-
-Common challenges include:
-
-* Difficulty identifying existing strengths and weaknesses
-* Unclear understanding of which skills need improvement
-* Generic learning paths that do not account for prior knowledge
-* Learning resources being followed without a structured progression
-* Lack of a clear connection between assessment results and the next learning steps
-
-Aaroha aims to address this by connecting learner information, skill assessment, skill-gap identification, and roadmap generation into a single learning journey.
+> **Goal:** Turn a student's current skill set into a clear path toward a target career.
 
 ---
 
-## Our Approach
+## The Problem
 
-Aaroha follows a learner-centered flow.
+Students often face three fundamental questions:
 
-The platform first understands what the learner wants to pursue and what they already know. The learner then completes a domain-specific assessment. Based on the assessment results, Aaroha presents the learner's skill proficiency and identifies areas that require further development.
+* **What career should I prepare for?**
+* **What skills does that career actually require?**
+* **What should I learn next?**
 
-The resulting information is used to provide a personalized roadmap rather than forcing every learner to follow the same starting point.
+Many learners may know what they want to become but do not have a clear path for getting there.
+
+Existing learning platforms can provide courses and learning resources, but the learning journey may still be difficult to personalize because:
+
+* Learning paths are often generic.
+* Existing skills are not always considered before starting a learning path.
+* Skill gaps are not clearly mapped to a target career.
+* Assessment, learning, and progress tracking may exist as separate activities.
+
+Aaroha addresses this gap by connecting these stages into one continuous journey.
 
 ---
 
-## Current Prototype
+## Our Solution
+
+Aaroha follows a learner-centered approach:
+
+```text
+Assess
+   ↓
+Compare
+   ↓
+Identify Skill Gaps
+   ↓
+Build Roadmap
+   ↓
+Track Progress
+   ↓
+Adapt Learning Journey
+```
+
+The platform first understands the learner's direction and existing skills. It then uses assessment results to understand the learner's current proficiency and identify the skills that need improvement.
+
+The identified gaps are converted into a structured learning roadmap.
+
+The long-term vision is to allow the learning journey to continuously adapt according to the learner's progress.
+
+---
+
+## How Aaroha Works
+
+The overall Aaroha journey is designed around four stages:
+
+### 1. Discover Your Direction
+
+Learners identify what they want to become or explore suitable domains when they are unsure about their career direction.
+
+### 2. Understand Your Current Skills
+
+Learners select the skills they already know and take a basic skill assessment to understand their current proficiency.
+
+### 3. Get a Personalized Roadmap
+
+The platform analyzes the learner's skill gap and generates a structured roadmap containing technologies, topics, and learning tasks.
+
+### 4. Learn, Track & Adapt
+
+The planned system allows learners to track their task progress while the roadmap and timeline adapt according to their progress.
+
+The current MVP primarily demonstrates the journey through **assessment, skill-gap identification, and personalized roadmap generation**.
+
+---
+
+## Current MVP
 
 The current prototype demonstrates the personalized learning journey for the **Web Development** domain.
 
-### Current User Flow
+### Current Flow
 
 ```text
 Login
-  ↓
+   ↓
 Start Journey
-  ↓
+   ↓
 Career / Domain Intent
-  ↓
+   ↓
 Domain Selection
-  ↓
+   ↓
 Select Existing Skills
-  ↓
+   ↓
 Skill Assessment
-  ↓
-Skill Proficiency & Skill Gap
-  ↓
+   ↓
+Skill Proficiency
+   ↓
+Skill Gap Analysis
+   ↓
 Retake Assessment / Continue
-  ↓
+   ↓
 Personalized Roadmap
 ```
 
-### How It Works
+### Detailed Flow
 
-1. **Login**
+#### Login
 
-   The learner begins by accessing the platform through the login interface.
+The learner begins the journey through the login interface.
 
-2. **Start Journey**
+#### Start Journey
 
-   The learner starts their personalized learning journey.
+The learner starts their personalized career-learning journey.
 
-3. **Career / Domain Intent**
+#### Career / Domain Intent
 
-   The platform asks whether the learner already has an idea of what they want to become.
+The platform asks the learner about their career direction.
 
-4. **Domain Selection**
+A learner can indicate whether they already know what they want to become or need guidance.
 
-   For the current prototype, the learner can proceed with the **Web Development** domain.
+#### Domain Selection
 
-5. **Existing Skills**
+The current MVP focuses on **Web Development**.
 
-   The learner selects the skills they already know.
+#### Existing Skills
 
-   This allows the platform to account for prior knowledge instead of treating the learner as a complete beginner in every topic.
+The learner selects the skills they already know.
 
-6. **Assessment**
+This allows the system to account for prior knowledge instead of treating every learner as a complete beginner.
 
-   The learner completes an assessment designed for the selected domain.
+For example, if a learner already has knowledge of HTML, the learning path can take that existing knowledge into account while identifying areas that need more attention.
 
-7. **Skill Proficiency**
+#### Skill Assessment
 
-   After the assessment, the platform displays the learner's proficiency for individual skills.
+The learner completes a domain-specific assessment to evaluate their current knowledge.
 
-   Example:
+#### Skill Proficiency
 
-   ```text
-   HTML       → Proficiency: XX%
-   CSS        → Proficiency: XX%
-   JavaScript → Proficiency: XX%
-   ```
+The assessment results are presented as skill-wise proficiency information.
 
-8. **Skill Gap**
+For example:
 
-   The assessment results are used to identify areas where the learner needs additional learning.
+```text
+HTML        → Proficiency
+CSS         → Proficiency
+JavaScript  → Proficiency
+```
 
-9. **Retake or Continue**
+#### Skill-Gap Analysis
 
-   The learner can either retake the assessment or continue with the roadmap.
+The system compares the learner's current skill level with the expected skills for the selected learning path and identifies areas that require further development.
 
-10. **Personalized Roadmap**
+#### Retake or Continue
 
-    The roadmap is generated according to the learner's assessment results and identified skill gaps.
+After viewing the assessment results, the learner can:
+
+* Retake the assessment
+* Continue to the roadmap
+
+#### Personalized Roadmap
+
+The roadmap is generated based on the learner's assessment results and identified skill gaps.
 
 ---
 
 ## Key Features
 
-### Personalized Skill Assessment
+### Career-Role Selection
 
-Learners can evaluate their existing knowledge through a domain-specific assessment.
+Allows learners to identify the career direction or domain they want to prepare for.
+
+### Skill Assessment
+
+Evaluates the learner's current knowledge and proficiency across relevant skills.
 
 ### Existing Skill Recognition
 
-Learners can indicate skills they already know, allowing the learning journey to account for prior knowledge.
+Allows learners to indicate skills they already possess before beginning their learning path.
 
-### Skill Proficiency Analysis
+### Skill-Gap Analysis
 
-Assessment results are presented as skill-wise proficiency levels so learners can understand their current standing.
-
-### Skill-Gap Identification
-
-The platform highlights areas where the learner requires further development.
+Compares the learner's current skills with the skills required for the selected career direction and identifies areas that need development.
 
 ### Personalized Roadmap
 
-The assessment results are used to provide a learning roadmap suited to the learner's current skill level.
+Converts identified skill gaps into a structured, step-by-step learning path.
 
-### Assessment Retake
+### Progress Tracking
 
-Learners can retake the assessment when they want to reassess their knowledge.
+The overall system is designed to track completed skills, tasks, and milestones throughout the learner's career-readiness journey.
 
-### Structured Learning Journey
+### Continuous Learning Journey
 
-The platform connects learner information, assessment, skill analysis, and roadmap generation into one continuous flow.
-
----
-
-## Current Domain Coverage
-
-The current prototype focuses on:
-
-**Web Development**
-
-The platform is designed so that additional domains can be incorporated as the project evolves.
-
----
-
-## System Flow
+Aaroha connects:
 
 ```text
-                 ┌──────────────────┐
-                 │      Learner     │
-                 └────────┬─────────┘
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │      Login       │
-                 └────────┬─────────┘
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │   Start Journey  │
-                 └────────┬─────────┘
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │ Domain Selection │
-                 └────────┬─────────┘
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │ Existing Skills  │
-                 └────────┬─────────┘
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │   Assessment     │
-                 └────────┬─────────┘
-                          │
-                          ▼
-             ┌──────────────────────────┐
-             │ Proficiency & Skill Gap  │
-             └────────────┬─────────────┘
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │ Personalized     │
-                 │ Roadmap          │
-                 └──────────────────┘
+Skill Selection
+      ↓
+Assessment
+      ↓
+Skill Gap
+      ↓
+Roadmap
+      ↓
+Tasks
+      ↓
+Progress
 ```
+
+instead of treating these as unrelated activities.
+
+---
+
+## Planned Task & Progress System
+
+The roadmap is intended to become more actionable by breaking learning goals into smaller tasks.
+
+### Weekly Tasks
+
+The learner will receive a set of tasks to complete within a particular week.
+
+### Monthly Goals
+
+Weekly tasks can be organized under broader monthly learning objectives.
+
+### Progress Tracking
+
+Learners will be able to track completed and pending tasks as they move through the roadmap.
+
+### Adaptive Timeline
+
+If a learner is unable to complete planned tasks within the original timeframe, the system is intended to update the learning schedule.
+
+For example:
+
+```text
+Original Plan
+
+Week 1 → Tasks A, B, C
+Week 2 → Tasks D, E, F
+Week 3 → Tasks G, H, I
+```
+
+If the learner falls behind:
+
+```text
+Updated Plan
+
+Week 1 → Tasks A, B
+Week 2 → Remaining Task C + Tasks D, E
+Week 3 → Tasks F, G
+Week 4 → Remaining Tasks H, I
+```
+
+The objective is to make the learning journey **adaptive to the learner's actual pace** rather than forcing the learner to follow an unchanging timeline.
+
+> **Note:** Weekly/monthly task scheduling, progress-based timeline adjustment, and advanced adaptive behavior are planned extensions and are not part of the current MVP.
+
+---
+
+## What Makes Aaroha Different?
+
+### Personalized From the Starting Point
+
+Aaroha first considers what the learner already knows before determining what they need to learn.
+
+### One Continuous Learning Journey
+
+The platform connects:
+
+```text
+Skill Selection
+→ Assessment
+→ Skill Gap
+→ Roadmap
+→ Tasks
+→ Progress
+```
+
+### Progress-Aware Learning
+
+The planned system can adapt the roadmap and timeline based on the learner's actual progress.
+
+### Career-Oriented Skill Mapping
+
+Instead of only presenting learning resources, Aaroha focuses on understanding the gap between a learner's current skill set and their target career.
+
+---
+
+## System Architecture
+
+The technical approach is organized into frontend, backend, database, and core-logic components.
+
+```text
+                         AAROHA
+                           │
+             ┌─────────────┴─────────────┐
+             │                           │
+         Frontend                    Backend
+             │                           │
+     React + Vite                Node.js + Express.js
+     JavaScript + CSS                  REST APIs
+             │                           │
+             └─────────────┬─────────────┘
+                           │
+                           ▼
+                       SQLite
+                           │
+                           ▼
+                  Learner & Progress Data
+```
+
+### Frontend
+
+The frontend provides interfaces for:
+
+* Learner profile
+* Domain exploration
+* Career/domain selection
+* Skill selection
+* Assessment
+* Skill results
+* Roadmap
+* Progress
+
+### Backend
+
+The backend provides REST APIs for handling learner, assessment, skill-gap, roadmap, and progress-related data.
+
+### Database
+
+SQLite is used for storing application data such as:
+
+* Learner profiles
+* Skills
+* Assessments
+* Roadmaps
+* Progress
+
+### Core Logic
+
+The core logic handles:
+
+* Skill proficiency calculation
+* Skill-gap calculation
+* Personalized roadmap generation
+* Daily/weekly progress tracking
+* Adaptive timeline logic
+
+---
+
+## Application Modules
+
+The system is organized around modular functionality:
+
+### Profile Module
+
+Handles learner profile information.
+
+### Assessment Module
+
+Handles assessment questions and scoring.
+
+### Skill-Gap Module
+
+Calculates the skills that require further development.
+
+### Roadmap Module
+
+Generates the structured learning path and learning tasks.
+
+### Progress Module
+
+Tracks task and learning completion.
 
 ---
 
 ## Technology Stack
 
-> This section should be updated with the final technologies confirmed by the development team.
+| Layer           | Technologies                 |
+| --------------- | ---------------------------- |
+| Frontend        | React, Vite, JavaScript, CSS |
+| Backend         | Node.js, Express.js          |
+| API             | REST APIs                    |
+| Database        | SQLite, SQL                  |
+| Core Logic      | JavaScript, JSON             |
+| Version Control | Git, GitHub                  |
 
-### Frontend
-
-* React
-* Vite
-* CSS
-
-### Backend
-
-* Node.js
-* Express.js
-
-### Database
-
-* SQLite
-
-### APIs
-
-* REST APIs
+The technical stack and organization above follow the technical approach described in the project presentation.
 
 ### AI / ML
 
-* [To be confirmed]
+**To be confirmed.**
 
-### Development Tools
-
-* Git
-* GitHub
-* Visual Studio Code
+The project presentation lists AI-powered learning recommendations under future scope, so the README does not currently claim a specific AI model or API as part of the implemented MVP.
 
 ---
 
 ## Project Structure
-
-The repository is organized into separate frontend and backend applications.
 
 ```text
 Aaroha-2026/
@@ -253,15 +417,13 @@ Aaroha-2026/
 └── README.md
 ```
 
-The exact internal structure may evolve as the prototype continues to be developed.
-
 ---
 
 ## Getting Started
 
 ### Prerequisites
 
-Make sure the following are installed on your system:
+Make sure you have the following installed:
 
 * Node.js
 * npm
@@ -273,120 +435,172 @@ Make sure the following are installed on your system:
 git clone https://github.com/thushara-bajimar/Aaroha-2026.git
 ```
 
-Move into the project directory:
-
 ```bash
 cd Aaroha-2026
 ```
 
-### Install Frontend Dependencies
+### Frontend Setup
 
 ```bash
 cd client
 npm install
-```
-
-### Start the Frontend
-
-```bash
 npm run dev
 ```
 
 ### Backend Setup
 
-Open a separate terminal and navigate to the server directory:
+Open another terminal:
 
 ```bash
 cd server
 npm install
 ```
 
-Start the backend using the project's configured development command.
+Then run the backend using the command configured in the server project.
 
-> **Note:** Update the exact backend start command and any environment-variable requirements here after the final project configuration is confirmed.
+> **Note:** The exact backend start command and environment variables should be updated here once the final project configuration is confirmed.
 
 ---
 
 ## Environment Variables
 
-If the final implementation requires environment variables, create a `.env` file according to the project's configuration.
+If environment variables are required by the final implementation, create a `.env` file according to the project's configuration.
 
 Example:
 
 ```env
-# Add confirmed project variables here
+# Add confirmed variables here
 # API_KEY=
 # DATABASE_URL=
 ```
 
-**Do not commit private API keys, passwords, tokens, or other secrets to GitHub.**
+Do not commit private keys, passwords, tokens, or other sensitive credentials to the repository.
+
+---
+
+## Current Domain
+
+The current MVP demonstrates the workflow using:
+
+**Web Development**
+
+The architecture is intended to support expansion to additional career domains.
 
 ---
 
 ## Future Scope
 
-The current prototype establishes the core personalized-learning workflow. The following capabilities are planned for future development:
+The following capabilities are planned for future development:
 
 ### AI-Powered Learning Recommendations
 
-Use AI to provide more personalized recommendations based on learner performance, interests, and progress.
+Analyze learner assessment results, skill gaps, and progress to recommend what the learner should learn next.
 
-### More Career Domains
+### Expansion to More Career Domains
 
-Expand beyond Web Development to support additional career and technology domains.
+Extend Aaroha beyond the initial domains to areas such as:
+
+* Cloud Computing
+* AI/ML
+* Digital Marketing
+* Other emerging career domains
 
 ### Advanced Adaptive Roadmaps
 
-Allow roadmaps to dynamically change as the learner's skills and progress evolve.
+Dynamically modify the learner's roadmap based on:
+
+* Completed tasks
+* Performance
+* Learning pace
+* Progress
+
+instead of following a fixed timeline.
 
 ### Industry Skill-Demand Integration
 
-Connect learning recommendations with current industry skill requirements.
+Incorporate current industry skill requirements to help learners understand which skills are relevant to their selected career.
 
-### Internship and Job Matching
+### Internship & Job Matching
 
-Explore opportunities to connect learners with relevant internships and job opportunities based on their skills and learning progress.
+Connect learners with relevant internships and entry-level opportunities based on their demonstrated skills, selected domain, and learning progress.
 
-### Institutional Analytics
+### Institutional Analytics Dashboard
 
-Provide institutions with aggregated insights that can help them understand student learning progress and skill development.
+Provide colleges with aggregated insights into:
+
+* Student skill gaps
+* Domain preferences
+* Learning progress
+* Career-readiness trends
+
+These future-scope areas are based on the project's presentation.
 
 ---
 
 ## Project Status
 
-**Current stage:** Prototype / MVP
+**Current Stage: Prototype / MVP**
 
-The current prototype demonstrates the complete flow from learner onboarding and existing-skill selection through assessment, skill-gap identification, and personalized roadmap generation for Web Development.
+The current MVP demonstrates the core personalized career-readiness flow:
 
-The project is still under active development, and additional features and UI improvements are being incorporated.
+```text
+Learner
+   ↓
+Career / Domain Direction
+   ↓
+Existing Skills
+   ↓
+Assessment
+   ↓
+Skill Proficiency
+   ↓
+Skill Gap
+   ↓
+Personalized Roadmap
+```
+
+The roadmap is the endpoint of the currently demonstrated MVP flow.
+
+The following are planned extensions:
+
+```text
+Personalized Roadmap
+        ↓
+Weekly / Monthly Tasks
+        ↓
+Task Completion
+        ↓
+Progress Tracking
+        ↓
+Adaptive Timeline
+        ↓
+Updated Learning Plan
+```
 
 ---
 
-## Team
-
-Developed by:
+## Team Aaroha
 
 * **Thushara**
-* **Aditi**
 * **Trisha**
+* **Adithi**
 * **Spoorthi**
 
-**Institution:** Sahyadri college of Engineering and Management
+**Institution:** Sahyadri College of Engineering and Management
 
 ---
 
 ## Demo
 
-**Live Demo:** [To be added]
+**Live Demo:** To be added
 
-**Demo Video:** [To be added]
+**Demo Video:** To be added
 
 ---
 
 ## Presentation
 
-**Project Presentation:** [To be added]
+**Project Presentation:** To be added
 
 ---
 
@@ -394,4 +608,4 @@ Developed by:
 
 This project was developed as a hackathon/prototype project.
 
-Add an appropriate open-source license here if the team decides to make the project available under one.
+An open-source license can be added if the team decides to release the project under a specific license.
