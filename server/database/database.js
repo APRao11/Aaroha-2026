@@ -6,7 +6,7 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     email TEXT
-  ),
+  );
   CREATE TABLE IF NOT EXISTS assessment_results (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     learner_id INTEGER NOT NULL,

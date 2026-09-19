@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const db = require("./database/database");
 const learnerRoutes = require("./routes/learnerRoutes");
+const assessmentRoutes = require("./routes/assessmentRoutes");
 
 const app = express();
 const PORT = 5000;
@@ -10,6 +11,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 app.use("/api/learners", learnerRoutes);
+app.use("/api/assessments", assessmentRoutes);
 
 // app.get("/", (req, res) => {
 //   res.json({ message: "Aaroha backend is running!" });
