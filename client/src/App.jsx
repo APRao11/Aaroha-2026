@@ -16,6 +16,7 @@ function App() {
   const [backendStatus, setBackendStatus] = useState('Checking backend connection...')
   const [learnerId, setLearnerId] = useState(null)
   const [skillLevels, setSkillLevels] = useState({})
+  const [isSubmittingLogin, setIsSubmittingLogin] = useState(false)
 
   useEffect(() => {
     const checkBackend = async () => {
@@ -78,12 +79,22 @@ function App() {
   }
 
   const handleLogin = async () => {
-    if (!email || !password) {
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
+
+    if (!trimmedEmail || !trimmedPassword) {
       setLoginMessage(
         'Please enter your email and password.'
       )
       return
     }
+
+    if (isSubmittingLogin) {
+      return
+    }
+
+    setLoginMessage('')
+    setIsSubmittingLogin(true)
 
     try {
       const response = await fetch('/api/learners', {
@@ -92,8 +103,8 @@ function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: email.includes('@') ? email.split('@')[0] : email,
-          email,
+          name: trimmedEmail.includes('@') ? trimmedEmail.split('@')[0] : trimmedEmail,
+          email: trimmedEmail,
         }),
       })
 
@@ -108,6 +119,8 @@ function App() {
       goToPage('landing')
     } catch (error) {
       setLoginMessage(error.message)
+    } finally {
+      setIsSubmittingLogin(false)
     }
   }
 
@@ -233,13 +246,15 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <button onClick={handleLogin}>
-              Login →
+            <button onClick={handleLogin} disabled={isSubmittingLogin}>
+              {isSubmittingLogin ? 'Logging in...' : 'Login →'}
             </button>
 
-            <p className="login-message">
-              {backendStatus}
-            </p>
+            {backendStatus !== 'Aaroha backend is running!' && backendStatus && (
+              <p className="login-message">
+                {backendStatus}
+              </p>
+            )}
 
             {loginMessage && (
               <p className="login-message">
