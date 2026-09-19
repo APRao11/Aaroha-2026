@@ -29,4 +29,25 @@ router.post("/", (req, res) => {
   });
 });
 
+router.get("/:id/skill-gap", (req, res) => {
+  const { id } = req.params;
+
+  const results = db.prepare(`
+    SELECT skill, proficiency, skill_gap
+    FROM assessment_results
+    WHERE learner_id = ?
+  `).all(id);
+
+  const skillGaps = {};
+
+  for (const result of results) {
+    skillGaps[result.skill] = {
+      proficiency: result.proficiency,
+      skillGap: result.skill_gap
+    };
+  }
+
+  res.json(skillGaps);
+});
+
 module.exports = router;
