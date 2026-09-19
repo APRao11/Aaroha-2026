@@ -12,6 +12,16 @@ router.post("/", (req, res) => {
     });
   }
 
+  const learner = db
+    .prepare("SELECT id FROM learners WHERE id = ?")
+    .get(learnerId);
+
+  if (!learner) {
+    return res.status(404).json({
+      error: "Learner not found"
+    });
+  }
+
   const insert = db.prepare(`
     INSERT INTO assessment_results
     (learner_id, skill, correct_answers, total_questions, proficiency, skill_gap)

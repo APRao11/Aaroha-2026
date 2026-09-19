@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import domains from './data/domains'
+import Assessment from './components/assessment/Assessment'
 
 function App() {
   const [page, setPage] = useState('login')
@@ -475,30 +476,11 @@ function App() {
       {/* ASSESSMENT PLACEHOLDER */}
 
       {page === 'assessment' && domainInfo && (
-        <section className="skills">
-
-          <h1>
-            {domainInfo.name} Assessment
-          </h1>
-
-          <p>
-            Your personalized assessment will
-            appear here.
-          </p>
-
-          <p>
-            Selected skills:{' '}
-
-            {selectedSkills.length > 0
-              ? selectedSkills.join(', ')
-              : 'None selected'}
-          </p>
-
-          <p>
-            Assessment module coming soon 🚀
-          </p>
-
-        </section>
+        <Assessment
+          learnerId={learnerId}
+          selectedSkills={selectedSkills}
+          domain={selectedDomain}
+        />
       )}
 
     </div>

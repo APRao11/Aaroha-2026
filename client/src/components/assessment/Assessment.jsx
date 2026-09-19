@@ -5,8 +5,8 @@ import {
   handleSkillSelection
 } from "./assessmentLogic";
 
-function Assessment() {
-  const [selectedSkills, setSelectedSkills] = useState([]);
+function Assessment({ learnerId = null, selectedSkills: initialSkills = [], domain = "" }) {
+  const [selectedSkills, setSelectedSkills] = useState(initialSkills);
   const [noneSelected, setNoneSelected] = useState(false); 
   const [started, setStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -179,6 +179,21 @@ onClick={() => {
         finalAnswersBySkill,
         assessmentData
       );
+
+      if (learnerId) {
+        fetch('/api/assessments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            learnerId,
+            results: calculatedResults,
+          }),
+        }).catch((error) => {
+          console.error('Assessment save failed:', error);
+        });
+      }
 
       setResults(calculatedResults);
     }
