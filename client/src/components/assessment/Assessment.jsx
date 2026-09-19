@@ -196,10 +196,6 @@ onClick={() => {
       }
 
       setResults(calculatedResults);
-
-      if (onComplete) {
-        onComplete(calculatedResults);
-      }
     }
   }
 }}
@@ -264,7 +260,9 @@ onClick={() => {
   Retake Assessment
 </button><button
   onClick={() => {
-    console.log("Assessment results ready for roadmap:", results);
+    if (onComplete) {
+      onComplete(results);
+    }
   }}
 >
   Continue to Roadmap
