@@ -5,7 +5,7 @@ import {
   handleSkillSelection
 } from "./assessmentLogic";
 
-function Assessment({ learnerId = null, selectedSkills: initialSkills = [], domain = "" }) {
+function Assessment({ learnerId = null, selectedSkills: initialSkills = [], domain = "", onComplete = null }) {
   const [selectedSkills, setSelectedSkills] = useState(initialSkills);
   const [noneSelected, setNoneSelected] = useState(false); 
   const [started, setStarted] = useState(false);
@@ -196,6 +196,10 @@ onClick={() => {
       }
 
       setResults(calculatedResults);
+
+      if (onComplete) {
+        onComplete(calculatedResults);
+      }
     }
   }
 }}

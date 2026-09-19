@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import domains from './data/domains'
 import Assessment from './components/assessment/Assessment'
+import Roadmap from './components/roadmap/Roadmap'
+import { convertAssessmentResultsToSkillLevels } from './data/roadmap'
 
 function App() {
   const [page, setPage] = useState('login')
@@ -13,6 +15,7 @@ function App() {
   const [loginMessage, setLoginMessage] = useState('')
   const [backendStatus, setBackendStatus] = useState('Checking backend connection...')
   const [learnerId, setLearnerId] = useState(null)
+  const [skillLevels, setSkillLevels] = useState({})
 
   useEffect(() => {
     const checkBackend = async () => {
@@ -138,6 +141,27 @@ function App() {
     } catch (error) {
       setLoginMessage(error.message)
     }
+  }
+
+  const handleAssessmentComplete = async (results) => {
+    if (!learnerId) {
+      return
+    }
+
+    try {
+      const response = await fetch(`/api/learners/${learnerId}/skill-gap`)
+      const data = await response.json()
+
+      if (response.ok && data) {
+        setSkillLevels(convertAssessmentResultsToSkillLevels(data))
+      } else {
+        setSkillLevels(convertAssessmentResultsToSkillLevels(results))
+      }
+    } catch (error) {
+      setSkillLevels(convertAssessmentResultsToSkillLevels(results))
+    }
+
+    setPage('roadmap')
   }
 
   return (
@@ -480,7 +504,12 @@ function App() {
           learnerId={learnerId}
           selectedSkills={selectedSkills}
           domain={selectedDomain}
+          onComplete={handleAssessmentComplete}
         />
+      )}
+
+      {page === 'roadmap' && (
+        <Roadmap skillLevels={skillLevels} />
       )}
 
     </div>
