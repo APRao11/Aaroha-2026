@@ -13,7 +13,7 @@ const domains = [
       'HTML',
       'CSS',
       'JavaScript',
-      'Git & GitHub',
+      'Git/GitHub',
       'React'
     ],
     careerPath: [
