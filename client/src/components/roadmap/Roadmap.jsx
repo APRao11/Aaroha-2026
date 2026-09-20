@@ -1,5 +1,6 @@
 import "./Roadmap.css";
 import { useMemo, useState } from "react";
+import AdaptiveTimeline from "./AdaptiveTimeline";
 import {
   getPersonalizedRoadmap,
   createProgress,
@@ -161,6 +162,8 @@ function Roadmap({ skillLevels = {} }) {
             />
           </div>
         </div>
+
+        <AdaptiveTimeline progress={progress} />
 
         {/* Roadmap */}
         <div className="roadmap-path">

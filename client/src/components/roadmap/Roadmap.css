@@ -192,6 +192,59 @@
 
 
 /* =========================================================
+   ADAPTIVE TIMELINE
+   ========================================================= */
+
+.adaptive-timeline {
+  margin: 0 0 34px;
+  padding: 22px;
+  border: 1px solid #dbe4ff;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f5f7ff, #eff6ff);
+}
+
+.adaptive-timeline h2 {
+  margin: 0 0 16px;
+  color: #172033;
+  font-size: 18px;
+}
+
+.timeline-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.timeline-summary div {
+  padding: 13px 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.timeline-summary span,
+.timeline-summary strong {
+  display: block;
+}
+
+.timeline-summary span {
+  margin-bottom: 4px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.timeline-summary strong {
+  color: #334155;
+  font-size: 16px;
+}
+
+.adaptive-timeline > p {
+  margin: 15px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+
+/* =========================================================
    ROADMAP PATH
    ========================================================= */
 
@@ -580,6 +633,10 @@
 
   .roadmap-progress-card {
     min-width: 0;
+  }
+
+  .timeline-summary {
+    grid-template-columns: 1fr;
   }
 
   .technology-header {
