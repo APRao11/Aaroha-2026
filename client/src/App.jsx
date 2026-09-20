@@ -107,26 +107,28 @@ function App() {
   }
 
 
-  const handleAssessmentComplete = async (results) => {
-    if (!learnerId) {
-      return
-    }
+const handleAssessmentComplete = async (results) => {
+  if (!learnerId) {
+    setSkillLevels({})
+    setPage('roadmap')
+    return
+  }
 
-    try {
-      const response = await fetch(`/api/learners/${learnerId}/skill-gap`)
-      const data = await response.json()
+  try {
+    const response = await fetch(`/api/learners/${learnerId}/skill-gap`)
+    const data = await response.json()
 
-      if (response.ok && data) {
-        setSkillLevels(convertAssessmentResultsToSkillLevels(data))
-      } else {
-        setSkillLevels(convertAssessmentResultsToSkillLevels(results))
-      }
-    } catch (error) {
+    if (response.ok && data) {
+      setSkillLevels(convertAssessmentResultsToSkillLevels(data))
+    } else {
       setSkillLevels(convertAssessmentResultsToSkillLevels(results))
     }
-
-    setPage('roadmap')
+  } catch (error) {
+    setSkillLevels(convertAssessmentResultsToSkillLevels(results))
   }
+
+  setPage('roadmap')
+}
 
   return (
     <div className="app">

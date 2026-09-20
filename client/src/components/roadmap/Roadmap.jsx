@@ -125,8 +125,8 @@ function Roadmap({ skillLevels = {} }) {
             <h1>Your Web Development Roadmap</h1>
 
             <p>
-              A personalized path from fundamentals to building
-              real-world React applications.
+              A personalized journey designed to help you learn, grow, and achieve your goals.
+
             </p>
           </div>
 

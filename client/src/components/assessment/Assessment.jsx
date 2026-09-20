@@ -217,13 +217,15 @@ onClick={() => {
       You can continue to the beginner roadmap.
     </p>
 
-    <button
-      onClick={() => {
-        console.log("Beginner roadmap should open");
-      }}
-    >
-      Continue to Beginner Roadmap
-    </button>
+   <button
+  onClick={() => {
+    if (onComplete) {
+      onComplete({});
+    }
+  }}
+>
+  Continue to Beginner Roadmap
+</button>
   </div>
 )}{results && (
   <div>
