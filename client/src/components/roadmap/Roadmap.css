@@ -1,39 +1,38 @@
-/* =========================================================
-   ROADMAP PAGE
-   ========================================================= */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  box-sizing: border-box;
+}
 
 .roadmap-page {
   min-height: 100vh;
   width: 100%;
-  padding: 48px 24px 80px;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.12), transparent 28%),
-    radial-gradient(circle at 90% 20%, rgba(14, 165, 233, 0.1), transparent 28%),
-    #f7f8fc;
-  color: #172033;
-  box-sizing: border-box;
+  padding: 44px 24px 76px;
+  background: #f5f7f6;
+  color: #182524;
 }
 
 .roadmap-container {
-  width: min(1100px, 100%);
+  width: min(1080px, 100%);
   margin: 0 auto;
 }
 
 
-/* =========================================================
-   HERO
-   ========================================================= */
+/**hero*/
 
 .roadmap-hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 36px;
   padding: 38px;
-  border-radius: 28px;
-  background: linear-gradient(135deg, #111827, #26356b);
+  border-radius: 16px;
+  background: #174a45;
   color: white;
-  box-shadow: 0 24px 60px rgba(31, 41, 55, 0.18);
+  box-shadow: 0 10px 28px rgba(23, 74, 69, 0.14);
   overflow: hidden;
   position: relative;
 }
@@ -44,9 +43,9 @@
   width: 260px;
   height: 260px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  right: -80px;
-  top: -100px;
+  background: rgba(255, 255, 255, 0.055);
+  right: -100px;
+  top: -125px;
 }
 
 .roadmap-hero-content {
@@ -57,12 +56,12 @@
 
 .roadmap-badge {
   display: inline-flex;
-  padding: 7px 13px;
-  margin-bottom: 16px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  padding: 6px 11px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.11);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -70,34 +69,33 @@
 
 .roadmap-hero h1 {
   margin: 0;
-  font-size: clamp(30px, 4vw, 46px);
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+  font-size: clamp(30px, 4vw, 43px);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  font-weight: 800;
 }
 
 .roadmap-hero p {
-  margin: 16px 0 0;
+  margin: 15px 0 0;
   max-width: 600px;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 16px;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
 
-/* =========================================================
-   PROGRESS CARD
-   ========================================================= */
+/*Progresscard*/
 
 .roadmap-progress-card {
-  min-width: 235px;
+  min-width: 230px;
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
+  gap: 16px;
+  padding: 18px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.09);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(12px);
   position: relative;
   z-index: 1;
 }
@@ -110,9 +108,9 @@
   place-items: center;
   border-radius: 50%;
   background: conic-gradient(
-    #60a5fa,
-    #818cf8,
-    #60a5fa
+    #39b879,
+    #71d59d,
+    #39b879
   );
   position: relative;
 }
@@ -122,13 +120,13 @@
   position: absolute;
   inset: 7px;
   border-radius: 50%;
-  background: #1d2851;
+  background: #174a45;
 }
 
 .progress-ring span {
   position: relative;
   z-index: 1;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
 }
 
@@ -136,117 +134,67 @@
   display: block;
   margin-bottom: 5px;
   color: rgba(255, 255, 255, 0.65);
-  font-size: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .roadmap-progress-card strong {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 
-/* =========================================================
-   OVERALL PROGRESS
-   ========================================================= */
+/* overallProgress*/
 
 .overall-progress {
-  margin: 24px 0 34px;
-  padding: 20px 22px;
-  border-radius: 18px;
-  background: white;
-  border: 1px solid #e6e9f0;
-  box-shadow: 0 8px 25px rgba(31, 41, 55, 0.05);
+  margin: 24px 0 32px;
+  padding: 22px 24px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #dfe6e3;
+  box-shadow: 0 5px 18px rgba(26, 50, 46, 0.045);
 }
 
 .overall-progress-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 11px;
+  align-items: flex-end;
+  margin-bottom: 15px;
 }
 
 .overall-progress-top span {
-  color: #64748b;
-  font-size: 13px;
+  display: block;
+  color: #52635f;
+  font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .overall-progress-top strong {
-  color: #4f46e5;
-  font-size: 14px;
+  color: #16845a;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 800;
 }
 
 .overall-progress-track {
-  height: 9px;
+  height: 10px;
   overflow: hidden;
   border-radius: 999px;
-  background: #e9edf5;
+  background: #e8eeeb;
 }
 
 .overall-progress-fill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #6366f1, #3b82f6);
+  background: #28a66c;
   transition: width 0.4s ease;
 }
 
 
-/* =========================================================
-   ADAPTIVE TIMELINE
-   ========================================================= */
-
-.adaptive-timeline {
-  margin: 0 0 34px;
-  padding: 22px;
-  border: 1px solid #dbe4ff;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #f5f7ff, #eff6ff);
-}
-
-.adaptive-timeline h2 {
-  margin: 0 0 16px;
-  color: #172033;
-  font-size: 18px;
-}
-
-.timeline-summary {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.timeline-summary div {
-  padding: 13px 15px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.timeline-summary span,
-.timeline-summary strong {
-  display: block;
-}
-
-.timeline-summary span {
-  margin-bottom: 4px;
-  color: #64748b;
-  font-size: 11px;
-}
-
-.timeline-summary strong {
-  color: #334155;
-  font-size: 16px;
-}
-
-.adaptive-timeline > p {
-  margin: 15px 0 0;
-  color: #64748b;
-  font-size: 13px;
-}
-
-
-/* =========================================================
-   ROADMAP PATH
-   ========================================================= */
+/* roadmap paht*/
 
 .roadmap-path {
   position: relative;
@@ -258,26 +206,20 @@
 
 .roadmap-connector {
   width: 2px;
-  height: 28px;
+  height: 27px;
   margin: 0 auto;
-  background: linear-gradient(
-    to bottom,
-    #c7d2fe,
-    #93c5fd
-  );
+  background: #d5dfdb;
 }
 
 
-/* =========================================================
-   TECHNOLOGY CARD
-   ========================================================= */
+/*tech card*/
 
 .technology-card {
-  background: white;
-  border: 1px solid #e4e8f0;
-  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid #dfe5e2;
+  border-radius: 13px;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(31, 41, 55, 0.05);
+  box-shadow: 0 4px 17px rgba(26, 50, 46, 0.045);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -285,13 +227,13 @@
 }
 
 .technology-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 38px rgba(31, 41, 55, 0.09);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 23px rgba(26, 50, 46, 0.07);
 }
 
 .technology-card.expanded {
-  border-color: #c7d2fe;
-  box-shadow: 0 16px 45px rgba(79, 70, 229, 0.09);
+  border-color: #9fc9bd;
+  box-shadow: 0 8px 25px rgba(23, 74, 69, 0.075);
 }
 
 .technology-header {
@@ -302,49 +244,51 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 22px 24px;
+  padding: 21px 23px;
   text-align: left;
   cursor: pointer;
   color: inherit;
 }
 
 .technology-header:hover {
-  background: #fafbff;
+  background: #fbfcfc;
 }
 
 .technology-left {
   display: flex;
   align-items: center;
-  gap: 17px;
+  gap: 15px;
 }
 
 .technology-number {
-  width: 48px;
-  height: 48px;
+  width: 45px;
+  height: 45px;
   display: grid;
   place-items: center;
-  border-radius: 15px;
-  background: linear-gradient(135deg, #eef2ff, #dbeafe);
-  color: #4f46e5;
-  font-size: 13px;
+  border-radius: 10px;
+  background: #e8f5f1;
+  color: #16776d;
+  font-size: 12px;
   font-weight: 800;
 }
 
 .technology-left h2 {
-  margin: 0 0 5px;
-  font-size: 19px;
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .technology-left span {
-  color: #7b8799;
-  font-size: 12px;
+  color: #7a8985;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .technology-right {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 15px;
 }
 
 .mini-progress {
@@ -352,49 +296,47 @@
   height: 6px;
   overflow: hidden;
   border-radius: 999px;
-  background: #edf0f5;
+  background: #e7ecea;
 }
 
 .mini-progress-fill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #6366f1, #3b82f6);
+  background: #269b86;
   transition: width 0.3s ease;
 }
 
 .expand-icon {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   display: grid;
   place-items: center;
-  border-radius: 10px;
-  background: #f3f5f9;
-  color: #475569;
-  font-size: 20px;
+  border-radius: 7px;
+  background: #f0f3f2;
+  color: #52635f;
+  font-size: 17px;
   font-weight: 500;
 }
 
 
-/* =========================================================
-   TOPICS
-   ========================================================= */
+/*topic*/
 
 .technology-content {
-  padding: 0 18px 18px;
-  border-top: 1px solid #edf0f5;
-  background: #fafbfe;
+  padding: 0 17px 17px;
+  border-top: 1px solid #e9eeec;
+  background: #fafcfb;
 }
 
 .topic-card {
-  margin-top: 12px;
+  margin-top: 11px;
   overflow: hidden;
-  border: 1px solid #e5e9f1;
-  border-radius: 16px;
+  border: 1px solid #e2e8e5;
+  border-radius: 10px;
   background: white;
 }
 
 .topic-card.expanded {
-  border-color: #c7d2fe;
+  border-color: #b7d7ce;
 }
 
 .topic-header {
@@ -405,56 +347,57 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 17px 18px;
+  padding: 16px 17px;
   cursor: pointer;
   text-align: left;
   color: inherit;
 }
 
 .topic-header:hover {
-  background: #fafaff;
+  background: #fbfcfc;
 }
 
 .topic-left {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 12px;
 }
 
 .topic-number {
-  width: 30px;
-  height: 30px;
+  width: 29px;
+  height: 29px;
   display: grid;
   place-items: center;
-  border-radius: 9px;
-  background: #f1f5f9;
-  color: #64748b;
-  font-size: 12px;
+  border-radius: 7px;
+  background: #edf2f0;
+  color: #60716c;
+  font-size: 10px;
   font-weight: 800;
 }
 
 .topic-left h3 {
   margin: 0 0 3px;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
 }
 
 .topic-left span {
-  color: #8a95a6;
-  font-size: 11px;
+  color: #8a9692;
+  font-size: 10px;
+  font-weight: 500;
 }
 
 .topic-arrow {
-  color: #64748b;
-  font-size: 18px;
+  color: #687873;
+  font-size: 16px;
 }
 
 
-/* =========================================================
-   TASKS
-   ========================================================= */
+/*task*/
 
 .task-list {
-  padding: 0 12px 12px;
+  padding: 0 11px 11px;
 }
 
 .task-card {
@@ -463,10 +406,10 @@
   justify-content: space-between;
   gap: 18px;
   margin-top: 8px;
-  padding: 15px;
-  border-radius: 13px;
-  border: 1px solid #edf0f4;
-  background: #fbfcfe;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #e8ecea;
+  background: #fcfdfc;
   transition:
     background 0.2s ease,
     border-color 0.2s ease;
@@ -474,36 +417,36 @@
 
 .task-card:hover {
   background: white;
-  border-color: #d9def0;
+  border-color: #d7dfdc;
 }
 
 .task-card.completed {
-  background: #f0fdf4;
-  border-color: #bbf7d0;
+  background: #f0faf5;
+  border-color: #b8e3cb;
 }
 
 .task-card.in-progress {
-  background: #eff6ff;
-  border-color: #bfdbfe;
+  background: #f0f8f7;
+  border-color: #b8dcd5;
 }
 
 .task-main {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 12px;
 }
 
 .task-number {
-  width: 34px;
-  height: 34px;
+  width: 33px;
+  height: 33px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border-radius: 10px;
-  background: #eef2f7;
-  color: #64748b;
-  font-size: 11px;
+  border-radius: 8px;
+  background: #edf1ef;
+  color: #64736f;
+  font-size: 10px;
   font-weight: 800;
 }
 
@@ -514,55 +457,55 @@
 .task-label {
   display: block;
   margin-bottom: 4px;
-  color: #8a95a6;
-  font-size: 9px;
+  color: #84918d;
+  font-size: 8px;
   font-weight: 800;
   letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
 .task-details p {
   margin: 0;
-  color: #334155;
-  font-size: 13px;
-  line-height: 1.45;
+  color: #35413e;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 
-/* =========================================================
-   STATUS SELECT
-   ========================================================= */
+/* selctstat*/
 
 .task-status {
   flex-shrink: 0;
   min-width: 135px;
   padding: 8px 30px 8px 11px;
-  border: 1px solid #dce1e9;
-  border-radius: 9px;
+  border: 1px solid #d9e0dd;
+  border-radius: 7px;
   background: white;
-  color: #475569;
-  font-size: 11px;
+  color: #52615d;
+  font-size: 10px;
   font-weight: 700;
   cursor: pointer;
   outline: none;
 }
 
 .task-status:focus {
-  border-color: #818cf8;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  border-color: #269b86;
+  box-shadow: 0 0 0 3px rgba(38, 155, 134, 0.1);
 }
 
 .task-status.completed {
-  border-color: #86efac;
-  color: #15803d;
+  border-color: #82cba3;
+  color: #16845a;
 }
 
 .task-status.in-progress {
-  border-color: #93c5fd;
-  color: #2563eb;
+  border-color: #8bc8bd;
+  color: #19796e;
 }
 
 .task-status.not-started {
-  color: #64748b;
+  color: #65736f;
 }
 
 .status-text {
@@ -570,55 +513,47 @@
 }
 
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
+/*footer*/
 
 .roadmap-footer {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-top: 28px;
-  padding: 20px 22px;
-  border: 1px solid #dbe4ff;
-  border-radius: 18px;
-  background: linear-gradient(
-    135deg,
-    #f5f7ff,
-    #eff6ff
-  );
+  gap: 14px;
+  margin-top: 27px;
+  padding: 19px 21px;
+  border: 1px solid #dbe6e2;
+  border-radius: 11px;
+  background: #f7faf9;
 }
 
 .footer-icon {
-  width: 40px;
-  height: 40px;
+  width: 39px;
+  height: 39px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border-radius: 12px;
-  background: #e0e7ff;
-  color: #4f46e5;
-  font-size: 18px;
+  border-radius: 8px;
+  background: #e5f3ef;
+  color: #19796e;
+  font-size: 17px;
   font-weight: 800;
 }
 
 .roadmap-footer strong {
   display: block;
   margin-bottom: 3px;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .roadmap-footer p {
   margin: 0;
-  color: #64748b;
-  font-size: 12px;
-  line-height: 1.5;
+  color: #687873;
+  font-size: 11px;
+  line-height: 1.55;
+  font-weight: 500;
 }
 
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
 
 @media (max-width: 760px) {
   .roadmap-page {
@@ -628,15 +563,11 @@
   .roadmap-hero {
     flex-direction: column;
     align-items: stretch;
-    padding: 26px 22px;
+    padding: 27px 22px;
   }
 
   .roadmap-progress-card {
     min-width: 0;
-  }
-
-  .timeline-summary {
-    grid-template-columns: 1fr;
   }
 
   .technology-header {
@@ -652,7 +583,7 @@
   }
 
   .technology-left h2 {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .task-card {
@@ -667,7 +598,7 @@
 
 @media (max-width: 480px) {
   .roadmap-hero h1 {
-    font-size: 29px;
+    font-size: 28px;
   }
 
   .technology-number {
@@ -690,4 +621,60 @@
   .task-card {
     padding: 13px;
   }
+
+  .overall-progress {
+    padding: 19px;
+  }
+}
+
+/* adaptive timeline */
+
+.adaptive-timeline {
+  margin: 0 0 34px;
+  padding: 22px;
+  border: 1px solid #dbe4ff;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f5f7ff, #eff6ff);
+}
+
+.adaptive-timeline h2 {
+  margin: 0 0 16px;
+  color: #182524;
+  font-size: 18px;
+}
+
+.timeline-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.timeline-summary div {
+  padding: 13px 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.timeline-summary span,
+.timeline-summary strong { display: block; }
+
+.timeline-summary span {
+  margin-bottom: 4px;
+  color: #64736f;
+  font-size: 11px;
+}
+
+.timeline-summary strong {
+  color: #35413e;
+  font-size: 16px;
+}
+
+.adaptive-timeline > p {
+  margin: 15px 0 0;
+  color: #687873;
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .timeline-summary { grid-template-columns: 1fr; }
 }
