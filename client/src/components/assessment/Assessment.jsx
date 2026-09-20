@@ -1,27 +1,19 @@
-import {useEffect, useState } from "react";
+import { useState } from "react";
 import assessmentData from "./assessmentData";
 import {
   calculateSelectedSkillsResults,
   handleSkillSelection
 } from "./assessmentLogic";
 
-function Assessment({ selectedSkillsFromApp, onAssessmentComplete}) {
-  const [selectedSkills, setSelectedSkills] = useState([]);
-  const [noneSelected, setNoneSelected] = useState(false); 
+function Assessment({ selectedSkills: initialSkills = [], onComplete = null }) {
+  const initialNoneSelected = initialSkills.includes("None of the above");
+  const [selectedSkills, setSelectedSkills] = useState(
+    initialNoneSelected ? [] : initialSkills
+  );
+  const [noneSelected, setNoneSelected] = useState(initialNoneSelected);
   const [started, setStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
-   useEffect(() => {
-    if (selectedSkillsFromApp?.length > 0) {
-      if (selectedSkillsFromApp.includes("None of the above")) {
-        setNoneSelected(true);
-        return;
-      }
-
-      setSelectedSkills(selectedSkillsFromApp);
-      setStarted(true);
-    }
-  }, [selectedSkillsFromApp]);
 
 const currentSkill = selectedSkills[currentSkillIndex];
   const [answers, setAnswers] = useState([]);
@@ -170,6 +162,11 @@ onClick={() => {
     return;
   }
 
+  const finalAnswersBySkill = {
+    ...answersBySkill,
+    [currentSkill]: answers
+  };
+
   setAnswersBySkill(finalAnswersBySkill);
 
 if (currentSkillIndex < selectedSkills.length - 1) {
@@ -206,7 +203,9 @@ if (currentSkillIndex < selectedSkills.length - 1) {
 
   <button
   onClick={() => {
-    onAssessmentComplete({});
+    if (onComplete) {
+      onComplete({});
+    }
   }}
 >
   Continue to Beginner Roadmap
@@ -246,7 +245,9 @@ if (currentSkillIndex < selectedSkills.length - 1) {
   Retake Assessment
 </button><button
   onClick={() => {
-    onAssessmentComplete(results);
+    if (onComplete) {
+      onComplete(results);
+    }
   }}
 >
   Continue to Roadmap

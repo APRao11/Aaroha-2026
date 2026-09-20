@@ -1,6 +1,6 @@
 
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import domains from './data/domains'
 import Assessment from './components/assessment/Assessment'
@@ -12,8 +12,6 @@ function App() {
   const [previousPage, setPreviousPage] = useState('')
   const [selectedSkills, setSelectedSkills] = useState([])
   const [selectedDomain, setSelectedDomain] = useState('')
-  const [assessmentResults, setAssessmentResults] = useState(null)
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loginMessage, setLoginMessage] = useState('')
@@ -28,7 +26,7 @@ function App() {
         const response = await fetch('/api')
         const data = await response.json()
         setBackendStatus(data.message || 'Backend connected')
-      } catch (error) {
+      } catch {
         setBackendStatus('Backend not connected yet')
       }
     }
@@ -166,16 +164,26 @@ function App() {
     }
 
     try {
-      const response = await fetch(`/api/learners/${learnerId}/skill-gap`)
-      const data = await response.json()
+      const response = await fetch('/api/assessments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          learnerId,
+          results,
+        }),
+      })
 
-      if (response.ok && data) {
-        setSkillLevels(convertAssessmentResultsToSkillLevels(data))
-      } else {
-        setSkillLevels(convertAssessmentResultsToSkillLevels(results))
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Could not save assessment results')
       }
-    } catch (error) {
+
       setSkillLevels(convertAssessmentResultsToSkillLevels(results))
+    } catch (error) {
+      setLoginMessage(error.message)
+      return
     }
 
     setPage('roadmap')
@@ -520,18 +528,18 @@ function App() {
 
       {/* ASSESSMENT */}
 
-{page === 'assessment' && domainInfo && (
-  <Assessment
-    selectedSkillsFromApp={selectedSkills}
-    onAssessmentComplete={(results) => {
-      setAssessmentResults(results)
-      goToPage('roadmap')
-    }}
-  />
-)}
-{page === 'roadmap' && (
-  <Roadmap skillLevels={convertAssessmentResultsToSkillLevels(assessmentResults)} />
-)}
+      {page === 'assessment' && domainInfo && (
+        <Assessment
+          learnerId={learnerId}
+          selectedSkills={selectedSkills}
+          domain={selectedDomain}
+          onComplete={handleAssessmentComplete}
+        />
+      )}
+
+      {page === 'roadmap' && (
+        <Roadmap skillLevels={skillLevels} />
+      )}
     </div>
   )
 }
