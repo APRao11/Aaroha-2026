@@ -57,10 +57,10 @@ function App() {
     }
   }
 
-  const selectDomain = (domainName) => {
+  const selectDomain = (domainName, skipOverview = false) => {
     setSelectedDomain(domainName)
     setSelectedSkills([])
-    goToPage('overview')
+    goToPage(skipOverview ? 'skills' : 'overview')
   }
 
   const selectSkill = (skill) => {
@@ -332,10 +332,53 @@ function App() {
             </button>
 
             <button
-              onClick={() => goToPage('domains')}
+              onClick={() => goToPage('explore')}
             >
               No, help me explore
             </button>
+
+          </div>
+
+        </section>
+      )}
+
+      {/* DOMAIN EXPLORATION */}
+
+      {page === 'explore' && (
+        <section className="explore">
+
+          <h1>
+            Explore Your Options
+          </h1>
+
+          <p>
+            Compare domains, discover career opportunities, and choose a
+            direction that feels right for you.
+          </p>
+
+          <div className="explore-list">
+
+            {domains.map((domain) => (
+              <article className="explore-card" key={domain.name}>
+                <div>
+                  <h2>{domain.name}</h2>
+                  <p>{domain.description}</p>
+                </div>
+
+                <div className="explore-opportunities">
+                  <h3>Career opportunities</h3>
+                  <ul>
+                    {domain.opportunities.map((opportunity) => (
+                      <li key={opportunity}>{opportunity}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <button onClick={() => selectDomain(domain.name)}>
+                  Choose this domain →
+                </button>
+              </article>
+            ))}
 
           </div>
 
@@ -361,7 +404,7 @@ function App() {
             {domains.map((domain) => (
               <button
                 key={domain.name}
-                onClick={() => selectDomain(domain.name)}
+                onClick={() => selectDomain(domain.name, true)}
               >
 
                 <h2>
