@@ -15,14 +15,12 @@ function Assessment({ selectedSkills: initialSkills = [], onComplete = null }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
 
-const currentSkill = selectedSkills[currentSkillIndex];
-  const [answers, setAnswers] = useState([]);
+  const currentSkill = selectedSkills[currentSkillIndex];
   const [results, setResults] = useState(null);
   const [answersBySkill, setAnswersBySkill] = useState({});
 
-const questions = currentSkill
-  ? assessmentData[currentSkill]
-  : [];
+  const questions = currentSkill ? assessmentData[currentSkill] || [] : [];
+  const answers = answersBySkill[currentSkill] || [];
 
   const skills = [
     "HTML",
@@ -77,7 +75,6 @@ const questions = currentSkill
     setSelectedSkills([]);
     setCurrentSkillIndex(0);
     setCurrentQuestion(0);
-    setAnswers([]);
     setAnswersBySkill({});
     handleSkillSelection(["None of the above"]);
   }
@@ -137,12 +134,10 @@ onChange={() => {
   const updatedAnswers = [...answers];
   updatedAnswers[currentQuestion] = option;
 
-  setAnswers(updatedAnswers);
-
-  setAnswersBySkill({
-    ...answersBySkill,
+  setAnswersBySkill((currentAnswers) => ({
+    ...currentAnswers,
     [currentSkill]: updatedAnswers
-  });
+  }));
 }}
 />
         {option}
@@ -169,19 +164,20 @@ onClick={() => {
 
   setAnswersBySkill(finalAnswersBySkill);
 
-if (currentSkillIndex < selectedSkills.length - 1) {
-  setCurrentSkillIndex(currentSkillIndex + 1);
-  setCurrentQuestion(0);
-  setAnswers([]);
-} else {
-  const calculatedResults = calculateSelectedSkillsResults(
-    selectedSkills,
-    finalAnswersBySkill,
-    assessmentData
-  );
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else if (currentSkillIndex < selectedSkills.length - 1) {
+      setCurrentSkillIndex(currentSkillIndex + 1);
+      setCurrentQuestion(0);
+    } else {
+      const calculatedResults = calculateSelectedSkillsResults(
+        selectedSkills,
+        finalAnswersBySkill,
+        assessmentData
+      );
 
-  setResults(calculatedResults);
-}
+      setResults(calculatedResults);
+    }
 }}
 >{currentQuestion < questions.length - 1
   ? "Next"
@@ -237,7 +233,6 @@ if (currentSkillIndex < selectedSkills.length - 1) {
     setStarted(true);
     setCurrentSkillIndex(0);
     setCurrentQuestion(0);
-    setAnswers([]);
     setAnswersBySkill({});
     setNoneSelected(false);
   }}
