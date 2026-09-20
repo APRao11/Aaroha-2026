@@ -17,6 +17,24 @@ function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loginMessage, setLoginMessage] = useState('')
+  const [backendStatus, setBackendStatus] = useState('Checking backend connection...')
+  const [learnerId, setLearnerId] = useState(null)
+  const [skillLevels, setSkillLevels] = useState({})
+  const [isSubmittingLogin, setIsSubmittingLogin] = useState(false)
+
+  useEffect(() => {
+    const checkBackend = async () => {
+      try {
+        const response = await fetch('/api')
+        const data = await response.json()
+        setBackendStatus(data.message || 'Backend connected')
+      } catch (error) {
+        setBackendStatus('Backend not connected yet')
+      }
+    }
+
+    checkBackend()
+  }, [])
 
   const domainInfo = domains.find(
     (domain) => domain.name === selectedDomain
@@ -64,16 +82,103 @@ function App() {
     setSelectedSkills(['None of the above'])
   }
 
-  const handleLogin = () => {
-    if (!email || !password) {
+  const handleLogin = async () => {
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
+
+    if (!trimmedEmail || !trimmedPassword) {
       setLoginMessage(
         'Please enter your email and password.'
       )
       return
     }
 
+    if (isSubmittingLogin) {
+      return
+    }
+
     setLoginMessage('')
-    goToPage('landing')
+    setIsSubmittingLogin(true)
+
+    try {
+      const response = await fetch('/api/learners', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: trimmedEmail.includes('@') ? trimmedEmail.split('@')[0] : trimmedEmail,
+          email: trimmedEmail,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Login failed')
+      }
+
+      setLearnerId(data.id)
+      setLoginMessage('')
+      goToPage('landing')
+    } catch (error) {
+      setLoginMessage(error.message)
+    } finally {
+      setIsSubmittingLogin(false)
+    }
+  }
+
+  const handleContinueToAssessment = async () => {
+    if (!learnerId) {
+      setLoginMessage('Please log in first before continuing.')
+      return
+    }
+
+    try {
+      const response = await fetch(`/api/learners/${learnerId}/skills`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          domain: selectedDomain,
+          skills: selectedSkills.includes('None of the above')
+            ? []
+            : selectedSkills,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Could not save skills')
+      }
+
+      goToPage('assessment')
+    } catch (error) {
+      setLoginMessage(error.message)
+    }
+  }
+
+  const handleAssessmentComplete = async (results) => {
+    if (!learnerId) {
+      return
+    }
+
+    try {
+      const response = await fetch(`/api/learners/${learnerId}/skill-gap`)
+      const data = await response.json()
+
+      if (response.ok && data) {
+        setSkillLevels(convertAssessmentResultsToSkillLevels(data))
+      } else {
+        setSkillLevels(convertAssessmentResultsToSkillLevels(results))
+      }
+    } catch (error) {
+      setSkillLevels(convertAssessmentResultsToSkillLevels(results))
+    }
+
+    setPage('roadmap')
   }
 
   return (
@@ -145,9 +250,15 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <button onClick={handleLogin}>
-              Login →
+            <button onClick={handleLogin} disabled={isSubmittingLogin}>
+              {isSubmittingLogin ? 'Logging in...' : 'Login →'}
             </button>
+
+            {backendStatus !== 'Aaroha backend is running!' && backendStatus && (
+              <p className="login-message">
+                {backendStatus}
+              </p>
+            )}
 
             {loginMessage && (
               <p className="login-message">
@@ -397,7 +508,7 @@ function App() {
           </p>
 
           <button
-            onClick={() => goToPage('assessment')}
+            onClick={handleContinueToAssessment}
           >
             Continue →
           </button>
