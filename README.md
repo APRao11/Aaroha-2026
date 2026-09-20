@@ -6,7 +6,7 @@
 
 The platform focuses on the part of the learning journey that comes **before and around learning content** — understanding where a learner currently stands, identifying what they need to learn, creating a structured roadmap, and eventually tracking and adapting their progress.
 
-> **Goal:** Turn a student's current skill set into a clear path toward a target career.
+**Goal:** Turn a student's current skill set into a clear path toward a target career.
 
 ---
 
@@ -261,7 +261,7 @@ Week 4 → Remaining Tasks H, I
 
 The objective is to make the learning journey **adaptive to the learner's actual pace** rather than forcing the learner to follow an unchanging timeline.
 
-> **Note:** Weekly/monthly task scheduling, progress-based timeline adjustment, and advanced adaptive behavior are planned extensions and are not part of the current MVP.
+ **Note:** Weekly/monthly task scheduling, progress-based timeline adjustment, and advanced adaptive behavior are planned extensions and are not part of the current MVP.
 
 ---
 
@@ -316,6 +316,7 @@ The technical approach is organized into frontend, backend, database, and core-l
                            ▼
                   Learner & Progress Data
 ```
+---
 
 ### Frontend
 
@@ -395,12 +396,6 @@ Tracks task and learning completion.
 
 The technical stack and organization above follow the technical approach described in the project presentation.
 
-### AI / ML
-
-**To be confirmed.**
-
-The project presentation lists AI-powered learning recommendations under future scope, so the README does not currently claim a specific AI model or API as part of the implemented MVP.
-
 ---
 
 ## Project Structure
@@ -454,39 +449,17 @@ Open another terminal:
 ```bash
 cd server
 npm install
+npm start
 ```
 
 Then run the backend using the command configured in the server project.
 
-> **Note:** The exact backend start command and environment variables should be updated here once the final project configuration is confirmed.
+---
+
+**Note:** The exact backend start command and environment variables should be updated here once the final project configuration is confirmed.
 
 ---
 
-## Environment Variables
-
-If environment variables are required by the final implementation, create a `.env` file according to the project's configuration.
-
-Example:
-
-```env
-# Add confirmed variables here
-# API_KEY=
-# DATABASE_URL=
-```
-
-Do not commit private keys, passwords, tokens, or other sensitive credentials to the repository.
-
----
-
-## Current Domain
-
-The current MVP demonstrates the workflow using:
-
-**Web Development**
-
-The architecture is intended to support expansion to additional career domains.
-
----
 
 ## Future Scope
 
@@ -559,23 +532,7 @@ Skill Gap
 Personalized Roadmap
 ```
 
-The roadmap is the endpoint of the currently demonstrated MVP flow.
 
-The following are planned extensions:
-
-```text
-Personalized Roadmap
-        ↓
-Weekly / Monthly Tasks
-        ↓
-Task Completion
-        ↓
-Progress Tracking
-        ↓
-Adaptive Timeline
-        ↓
-Updated Learning Plan
-```
 
 ---
 
@@ -604,8 +561,4 @@ Updated Learning Plan
 
 ---
 
-## License
 
-This project was developed as a hackathon/prototype project.
-
-An open-source license can be added if the team decides to release the project under a specific license.
