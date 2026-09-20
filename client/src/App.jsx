@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+
+
+import { useState } from 'react'
 import './App.css'
 import domains from './data/domains'
 import Assessment from './components/assessment/Assessment'
@@ -10,6 +12,8 @@ function App() {
   const [previousPage, setPreviousPage] = useState('')
   const [selectedSkills, setSelectedSkills] = useState([])
   const [selectedDomain, setSelectedDomain] = useState('')
+  const [assessmentResults, setAssessmentResults] = useState(null)
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loginMessage, setLoginMessage] = useState('')
@@ -514,19 +518,20 @@ function App() {
 
       {/* ASSESSMENT PLACEHOLDER */}
 
-      {page === 'assessment' && domainInfo && (
-        <Assessment
-          learnerId={learnerId}
-          selectedSkills={selectedSkills}
-          domain={selectedDomain}
-          onComplete={handleAssessmentComplete}
-        />
-      )}
+      {/* ASSESSMENT */}
 
-      {page === 'roadmap' && (
-        <Roadmap skillLevels={skillLevels} />
-      )}
-
+{page === 'assessment' && domainInfo && (
+  <Assessment
+    selectedSkillsFromApp={selectedSkills}
+    onAssessmentComplete={(results) => {
+      setAssessmentResults(results)
+      goToPage('roadmap')
+    }}
+  />
+)}
+{page === 'roadmap' && (
+  <Roadmap skillLevels={convertAssessmentResultsToSkillLevels(assessmentResults)} />
+)}
     </div>
   )
 }

@@ -1,21 +1,26 @@
-
+import { proficiencyToSkillLevel } from "../../data/roadmap";
 function calculateSkillResult(questions, answers) {
   let correctAnswers = 0;
 
-for (let i = 0; i < questions.length; i++) {
-  if (answers[i] === questions[i].correctAnswer) {
-    correctAnswers++;
+  for (let i = 0; i < questions.length; i++) {
+    if (answers[i] === questions[i].correctAnswer) {
+      correctAnswers++;
+    }
   }
-}
-const totalQuestions = questions.length;
-const proficiency = (correctAnswers / totalQuestions) * 100;
-const skillGap = 100 - proficiency;
-return {
-  correctAnswers,
-  totalQuestions,
-  proficiency,
-  skillGap
-};
+
+  const totalQuestions = questions.length;
+
+  const proficiency = (correctAnswers / totalQuestions) * 100;
+
+  const skillGap = 100 - proficiency;
+
+  return {
+    correctAnswers,
+    totalQuestions,
+    proficiency,
+    skillGap,
+    level: proficiencyToSkillLevel(proficiency)
+  };
 }
 function handleSkillSelection(selectedSkills) {
   if (

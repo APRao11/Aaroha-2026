@@ -202,10 +202,14 @@ const webDevelopmentRoadmap = [
  */
 export function proficiencyToSkillLevel(proficiency) {
   if (proficiency === undefined || proficiency === null) {
-    return "none";
+    return "beginner";
   }
 
-  if (proficiency >= 70) {
+  if (proficiency >= 80) {
+    return "advanced";
+  }
+
+  if (proficiency >= 50) {
     return "intermediate";
   }
 
@@ -250,17 +254,17 @@ export function convertAssessmentResultsToSkillLevels(
 
 export function getPersonalizedRoadmap(skillLevels) {
   return webDevelopmentRoadmap.map((technology) => {
-    const level = skillLevels[technology.technology] || "none";
+    const level = skillLevels[technology.technology] || "beginner";
 
     let startIndex = 0;
 
-    if (level === "beginner") {
-      startIndex = 1;
-    }
+if (level === "intermediate") {
+  startIndex = 1;
+}
 
-    if (level === "intermediate") {
-      startIndex = 2;
-    }
+if (level === "advanced") {
+  startIndex = 2;
+}
 
     const personalizedTopics = technology.topics.slice(startIndex);
 
